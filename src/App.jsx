@@ -5,7 +5,7 @@ import TodoList from "./components/TodoList.jsx";
 import TodoModal from "./components/TodoModal.jsx";
 
 const App = () => {
-  const { todos, addTodo, updateTodo, deleteTodo } = useTodo();
+  const { todos, addTodo, updateTodo, deleteTodo, toggleTodo } = useTodo();
   const { isOpen, editingTodo, openCreate, openEdit, close } = useModal();
 
   return (
@@ -21,7 +21,12 @@ const App = () => {
       )}
 
       {/* Todo List */}
-      <TodoList todos={todos} onDelete={deleteTodo} onEdit={openEdit} />
+      <TodoList
+        todos={todos}
+        onDelete={deleteTodo}
+        onEdit={openEdit}
+        onToggle={toggleTodo}
+      />
 
       {/* Add Button */}
       <button

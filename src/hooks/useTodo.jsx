@@ -10,6 +10,19 @@ const useTodo = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
+  const toggleTodo = (id) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              isCompleted: !todo.isCompleted,
+            }
+          : todo,
+      ),
+    );
+  };
+
   const addTodo = (todo) => {
     setTodos((prev) => [...prev, todo]);
   };
@@ -28,6 +41,7 @@ const useTodo = () => {
 
   return {
     todos,
+    toggleTodo,
     addTodo,
     updateTodo,
     deleteTodo,
