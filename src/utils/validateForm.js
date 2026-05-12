@@ -1,12 +1,15 @@
 export const validateForm = (formData) => {
   const errors = {};
 
+  // Title
   if (!formData.title.trim()) {
     errors.title = "Title is required";
-  } else if (formData.title.length < 3) {
+  }
+  if (formData.title.length < 3) {
     errors.title = "Title must be at least 3 characters";
   }
 
+  // Description
   if (formData.description.length > 200) {
     errors.description = "Description max 200 characters";
   }

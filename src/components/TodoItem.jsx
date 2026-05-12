@@ -29,15 +29,15 @@ const TodoItem = ({ todo, onDelete, onEdit }) => {
     <li
       className={`min-h-40 relative flex items-center justify-center border rounded-md  overflow-hidden ${borderStyles[priority]}`}
     >
-      <div className="w-full h-full px-4 py-2 flex items-center justify-between">
+      <div className="w-full h-full p-6 flex items-center justify-between gap-20">
         {/* Meta */}
         <div className="flex flex-1 flex-col gap-2">
-          <h3 className="text-3xl font-bold">{title}</h3>
-          <p className="text-md">{description}</p>
+          <h3 className="text-3xl font-bold line-clamp-1">{title}</h3>
+          <p className="text-md line-clamp-2">{description}</p>
           <div className="flex items-center gap-4">
             <span className="italic">{dueDate}</span>
             <span
-              className={`fit-content px-4 py-1 rounded-full ${tagStyles[priority]}`}
+              className={`w-fit max-w-48 px-4 py-1 rounded-full ${tagStyles[priority]} truncate`}
             >
               {capitalize(category)}
             </span>

@@ -67,7 +67,9 @@ const TodoModal = ({ onClose, onAdd, editingTodo, onUpdate }) => {
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Title */}
             <FormField>
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title">
+                Title <span className="text-red-500 text-xl">*</span>
+              </label>
               <input
                 id="title"
                 type="text"
@@ -85,7 +87,7 @@ const TodoModal = ({ onClose, onAdd, editingTodo, onUpdate }) => {
 
             {/* Description */}
             <FormField>
-              <label htmlFor="description">Title</label>
+              <label htmlFor="description">Description</label>
               <textarea
                 id="description"
                 name="description"
@@ -94,12 +96,34 @@ const TodoModal = ({ onClose, onAdd, editingTodo, onUpdate }) => {
                 onChange={handleChange}
                 className={inputClass()}
               />
+              {errors.description && (
+                <p className="text-sm text-red-500">{errors.description}</p>
+              )}
             </FormField>
 
-            <div className="flex items-center justify-between">
+            <div className="grid grid-cols-2 gap-2 items-start justify-between">
+              {/* Priority */}
+              <FormField>
+                <label htmlFor="priority">
+                  Priority <span className="text-red-500 text-xl">*</span>
+                </label>
+                <select
+                  id="priority"
+                  name="priority"
+                  value={formData.priority}
+                  onChange={handleChange}
+                  className="border p-2 rounded outline-none focus:border-green-500 transition duration-200"
+                >
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </FormField>
               {/* Due Date */}
               <FormField>
-                <label htmlFor="date">Date</label>
+                <label htmlFor="date">
+                  Date <span className="text-red-500 text-xl">*</span>
+                </label>
                 <input
                   id="date"
                   type="date"
@@ -113,27 +137,13 @@ const TodoModal = ({ onClose, onAdd, editingTodo, onUpdate }) => {
                   <p className="text-sm text-red-500">{errors.dueDate}</p>
                 )}
               </FormField>
-
-              {/* Priority */}
-              <FormField>
-                <label htmlFor="priority">Category</label>
-                <select
-                  id="priority"
-                  name="priority"
-                  value={formData.priority}
-                  onChange={handleChange}
-                  className="border p-2 rounded outline-none focus:border-green-500 transition duration-200"
-                >
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                </select>
-              </FormField>
             </div>
 
             {/* Category */}
             <FormField>
-              <label htmlFor="category">Category</label>
+              <label htmlFor="category">
+                Category <span className="text-red-500 text-xl">*</span>
+              </label>
               <input
                 input="category"
                 type="text"
