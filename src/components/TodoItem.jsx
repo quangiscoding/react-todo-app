@@ -27,14 +27,13 @@ const TodoItem = ({ todo, onDelete, onEdit }) => {
 
   return (
     <li
-      className={`relative border rounded-md  overflow-hidden ${borderStyles[priority]}`}
+      className={`min-h-40 relative flex items-center justify-center border rounded-md  overflow-hidden ${borderStyles[priority]}`}
     >
-      <div className="min-h-20 px-4 py-2 flex items-center justify-between">
+      <div className="w-full h-full px-4 py-2 flex items-center justify-between">
         {/* Meta */}
         <div className="flex flex-1 flex-col gap-2">
           <h3 className="text-3xl font-bold">{title}</h3>
           <p className="text-md">{description}</p>
-          {/* Due date and Category */}
           <div className="flex items-center gap-4">
             <span className="italic">{dueDate}</span>
             <span

@@ -12,8 +12,8 @@ const TodoList = ({ todos, onDelete, onEdit }) => {
             <TodoItem
               key={todo.id}
               todo={todo}
-              onDelete={onDelete}
               onEdit={onEdit}
+              onDelete={onDelete}
             />
           ))}
         </ul>

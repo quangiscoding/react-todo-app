@@ -21,7 +21,9 @@ const useTodo = () => {
   };
 
   const deleteTodo = (id) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    if (window.confirm("U sure bro?")) {
+      setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    }
   };
 
   return {

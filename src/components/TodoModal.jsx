@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
 
+import useTodoForm from "../hooks/useTodoForm.jsx";
 import FormField from "./FormField.jsx";
+import { validateForm } from "../utils/validateForm.js";
 
 const TodoModal = ({ onClose, onAdd, editingTodo, onUpdate }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    dueDate: "",
-    category: "",
-    priority: "medium",
-    isCompleted: false,
-  });
+  const { formData, setFormData } = useTodoForm();
 
   useEffect(() => {
     if (editingTodo) {
@@ -32,7 +27,7 @@ const TodoModal = ({ onClose, onAdd, editingTodo, onUpdate }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const validationErrors = validateForm();
+    const validationErrors = validateForm(formData);
 
     if (Object.keys(validationErrors).length > 0) {
       console.log(validationErrors);
@@ -56,34 +51,6 @@ const TodoModal = ({ onClose, onAdd, editingTodo, onUpdate }) => {
       onAdd(newTodo);
     }
     onClose();
-  };
-
-  const validateForm = () => {
-    const errors = {};
-
-    if (!formData.title.trim()) {
-      errors.title = "Title is required";
-    } else if (formData.title.length < 3) {
-      errors.title = "Title must be at least 3 characters";
-    }
-
-    if (formData.description.length > 200) {
-      errors.description = "Description max 200 characters";
-    }
-
-    if (!formData.category.trim()) {
-      errors.category = "Category is required";
-    }
-
-    const today = new Date().toISOString().split("T")[0];
-
-    if (!formData.dueDate) {
-      errors.dueDate = "Due date required";
-    } else if (formData.dueDate < today) {
-      errors.dueDate = "Due date cannot be in the past";
-    }
-
-    return errors;
   };
 
   const inputClass = (error) =>
